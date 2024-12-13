@@ -300,9 +300,31 @@ function getSpiralMatrix(/* size */) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const n = matrix.length;
+
+  for (let i = 0; i < n; i += 1) {
+    for (let j = i + 1; j < n; j += 1) {
+      const temp = matrix[i][j];
+      Object.assign(matrix[i], { [j]: matrix[j][i] });
+      Object.assign(matrix[j], { [i]: temp });
+    }
+  }
+
+  for (let i = 0; i < n; i += 1) {
+    for (let j = 0; j < Math.floor(n / 2); j += 1) {
+      const temp = matrix[i][j];
+      Object.assign(matrix[i], { [j]: matrix[i][n - j - 1] });
+      Object.assign(matrix[i], { [n - j - 1]: temp });
+    }
+  }
+  return matrix;
 }
+// rotateMatrix([
+//   [1, 2, 3],
+//   [4, 5, 6],
+//   [7, 8, 9],
+// ]);
 
 /**
  * Sorts an array of numbers in ascending order in place.
@@ -318,9 +340,27 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
-}
+// Bubble Sort
+// function sortByAsc(arr) {
+//   const n = arr.length;
+//   let swapped;
+//   for (let i = 0; i < n; i += 1) {
+//     swapped = false;
+
+//     for (let j = 0; j < n - 1 - i; j += 1) {
+//       if (arr[j] > arr[j + 1]) {
+//         Object.assign(arr, { [j]: arr[j + 1], [j + 1]: arr[j] });
+//         swapped = true;
+//       }
+//     }
+
+//     if (!swapped) {
+//       break;
+//     }
+//   }
+//   return arr;
+// }
+// sortByAsc([2, 9, 5]);
 
 /**
  * Shuffles characters in a string so that the characters with an odd index are moved to the end of the string at each iteration.
